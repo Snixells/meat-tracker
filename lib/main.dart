@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meattracker/shared/shared.dart';
 import 'package:provider/provider.dart';
 import './screens/screens.dart';
 
@@ -12,7 +13,9 @@ class MyApp extends StatelessWidget {
 
       // Named Routes
       routes: {
-        '/': (context) => TrackMeat(),
+        '/': (context) => BottomNavbar(),
+        '/analytics': (context) => Analytics(),
+        '/types': (context) => MeatTypes(),
       },
     );
   }

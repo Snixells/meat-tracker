@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../shared/shared.dart';
 
-class TrackMeat extends StatelessWidget {
-  const TrackMeat({Key key}) : super(key: key);
+class MeatTypes extends StatelessWidget {
+  const MeatTypes({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
