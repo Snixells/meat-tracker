@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         '/analytics': (context) => Analytics(),
         '/types': (context) => MeatTypes(),
       },
+      theme: ThemeData(fontFamily: 'Nunito'),
     );
   }
 }
