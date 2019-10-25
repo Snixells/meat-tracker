@@ -76,9 +76,9 @@ flutter:
         - asset: fonts/Nunito-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-    - family: Raleway
-      fonts:
-        - asset: fonts/Raleway-Regular.ttf
+    # - family: Raleway
+    #   fonts:
+    #     - asset: fonts/Raleway-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #

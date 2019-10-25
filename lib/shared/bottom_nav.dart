@@ -28,15 +28,27 @@ class _BottomNavbarState extends State<BottomNavbar> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.plusSquare, size: 20),
-            title: Text('Track Meat'),
+            title: Text(
+              'Track Meat',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Nunito'),
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.chartBar, size: 20),
-            title: Text('Analytics'),
+            title: Text(
+              'Analytics',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Nunito'),
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.bacon, size: 20),
-            title: Text('Meat Types'),
+            title: Text(
+              'Meat Types',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Nunito'),
+            ),
           ),
         ].toList(),
         // fixedColor: Colors.deepOrange[200],

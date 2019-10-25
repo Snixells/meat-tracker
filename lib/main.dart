@@ -17,7 +17,13 @@ class MyApp extends StatelessWidget {
         '/analytics': (context) => Analytics(),
         '/types': (context) => MeatTypes(),
       },
-      theme: ThemeData(fontFamily: 'Nunito'),
+      theme: ThemeData(
+          fontFamily: 'Nunito',
+          accentColor: Color.fromRGBO(54, 79, 107, 1),
+          primaryColor: Color.fromRGBO(63, 193, 201, 1),
+          appBarTheme: AppBarTheme(
+            
+          )),
     );
   }
 }
