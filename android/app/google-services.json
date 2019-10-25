@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "240564482211",
+    "firebase_url": "https://meat-tracker-3a9a2.firebaseio.com",
+    "project_id": "meat-tracker-3a9a2",
+    "storage_bucket": "meat-tracker-3a9a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240564482211:android:5631dbd3641949477a4f16",
+        "android_client_info": {
+          "package_name": "de.snixells.meattracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240564482211-vuop8i9lc6inhcfol6vj54g59eskb0ga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.snixells.meattracker",
+            "certificate_hash": "571cb8a99225e35069817f490bd883413f1fccbd"
+          }
+        },
+        {
+          "client_id": "240564482211-1d2eavoc39n19nignnugqn5dgadnsdqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7eMKkdJ-RwdPZAYZhXSDnX3fLKRmJANw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240564482211-1d2eavoc39n19nignnugqn5dgadnsdqu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "240564482211-8076k2v4d3s0kg0344uk8p4u2lf45egm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.snixells.meattracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
