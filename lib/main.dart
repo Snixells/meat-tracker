@@ -20,10 +20,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         // Named Routes
         routes: {
-          '/': (context) => LoginScreen(),
+          '/': (context) => Profile(),
+          // '/': (context) => LoginScreen(),
           '/main': (context) => BottomNavbar(),
           '/analytics': (context) => Analytics(),
           '/types': (context) => MeatTypes(),
+          '/login': (context) => LoginScreen(),
+          '/profile': (context) => Profile(),
         },
         theme: ThemeData(
             fontFamily: 'Nunito',

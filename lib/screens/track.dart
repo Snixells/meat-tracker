@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../shared/shared.dart';
 
@@ -15,6 +16,10 @@ class TrackMeat extends StatelessWidget {
           ),
           centerTitle: true,
           backgroundColor: Theme.of(context).accentColor,
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.user),
+            onPressed: () => Navigator.pushNamed(context, '/profile'),
+          ),
         ),
         body: ListView(
           children: [
