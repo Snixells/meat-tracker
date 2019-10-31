@@ -10,16 +10,14 @@ class TrackMeat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Meat Tracker',
-            style: TextStyle(color: Colors.white, fontSize: 25),
-          ),
+          title: Text('Meat Tracker'),
           centerTitle: true,
-          backgroundColor: Theme.of(context).accentColor,
-          leading: IconButton(
-            icon: Icon(FontAwesomeIcons.user),
-            onPressed: () => Navigator.pushNamed(context, '/profile'),
-          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(FontAwesomeIcons.user),
+              onPressed: () => Navigator.pushNamed(context, '/profile'),
+            ),
+          ],
         ),
         body: ListView(
           children: [

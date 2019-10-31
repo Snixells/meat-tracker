@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         // Named Routes
         routes: {
-          '/': (context) => Profile(),
+          '/': (context) => AddMeat(),
+          // '/': (context) => Profile(),
           // '/': (context) => LoginScreen(),
           '/main': (context) => BottomNavbar(),
           '/analytics': (context) => Analytics(),
@@ -29,10 +30,22 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => Profile(),
         },
         theme: ThemeData(
-            fontFamily: 'Nunito',
-            accentColor: Color.fromRGBO(54, 79, 107, 1),
-            primaryColor: Color.fromRGBO(63, 193, 201, 1),
-            appBarTheme: AppBarTheme()),
+          backgroundColor: Colors.blue,
+          canvasColor: Color.fromRGBO(244, 249, 242, 1),
+          fontFamily: 'Nunito',
+          accentColor: Color.fromRGBO(230, 57, 70, 1),
+          primaryColor: Color.fromRGBO(69, 123, 157, 1),
+          appBarTheme: AppBarTheme(
+              textTheme: TextTheme(
+                title: TextStyle(
+                  fontFamily: 'Nunito',
+                  color: Colors.black,
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              color: Colors.white),
+        ),
       ),
     );
   }

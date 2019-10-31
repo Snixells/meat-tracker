@@ -8,7 +8,8 @@ class RoundedButton extends StatelessWidget {
       this.borderRadius = 25,
       this.fontSize = 20,
       this.text = 'Text',
-      this.onTab})
+      this.onTab,
+      this.color})
       : super(key: key);
 
   final double sideLength;
@@ -17,6 +18,7 @@ class RoundedButton extends StatelessWidget {
   final double fontSize;
   final String text;
   final Function onTab;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +29,18 @@ class RoundedButton extends StatelessWidget {
       curve: Curves.easeIn,
       margin: EdgeInsets.all(margin),
       child: Material(
-        color: Theme.of(context).primaryColor,
+        color: color,
         borderRadius: BorderRadius.circular(borderRadius),
         child: InkWell(
           onTap: onTab,
           borderRadius: BorderRadius.circular(borderRadius),
-          splashColor: Theme.of(context).accentColor,
+          splashColor: Theme.of(context).primaryColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 text,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ],
           ),
