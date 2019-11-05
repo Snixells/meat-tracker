@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:meattracker/screens/authenticate/authenticate.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meattracker/services/auth.dart';
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         // Named Routes
         routes: {
-          '/': (context) => AddMeat(),
+          '/': (context) => Authenticate(),
+          // '/': (context) => AddMeat(),
           // '/': (context) => Profile(),
           // '/': (context) => LoginScreen(),
           '/main': (context) => BottomNavbar(),

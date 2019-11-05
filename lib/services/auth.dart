@@ -15,15 +15,16 @@ class AuthService {
   Future<FirebaseUser> googleSignIn() async {
     try {
       GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-      GoogleSignInAuthentication googleAuth =
-          await googleSignInAccount.authentication;
+      GoogleSignInAuthentication googleAuth = await googleSignInAccount.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.getCredential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      FirebaseUser user = await _auth.signInWithCredential(credential);
+      AuthResult result = await _auth.signInWithCredential(credential);
+      FirebaseUser user = result.user;
+
       updateUserData(user);
 
       return user;
@@ -34,19 +35,47 @@ class AuthService {
   }
 
   Future<FirebaseUser> anonLogin() async {
-    FirebaseUser user = await _auth.signInAnonymously();
+    AuthResult result = await _auth.signInAnonymously();
+    FirebaseUser user = result.user;
     updateUserData(user);
     return user;
+  }
+
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = result.user;
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = result.user;
+      updateUserData(user);
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 
   Future<void> updateUserData(FirebaseUser user) {
     DocumentReference reportRef = _db.collection('reports').document(user.uid);
 
-    return reportRef.setData({'uid': user.uid, 'lastActivity': DateTime.now()},
-        merge: true);
+    return reportRef.setData({'uid': user.uid, 'lastActivity': DateTime.now()}, merge: true);
   }
 
-  Future<void> signOut() {
-    return _auth.signOut();
+  Future<void> signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 }
