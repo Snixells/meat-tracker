@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         },
         theme: ThemeData(
           backgroundColor: Colors.blue,
-          canvasColor: Color.fromRGBO(236, 240, 241,1),
+          canvasColor: Color.fromRGBO(240, 240, 240,1),
           fontFamily: 'Nunito',
           accentColor: Color.fromRGBO(46, 204, 113, 1),
           primaryColor: Color.fromRGBO(52, 152, 219, 1),

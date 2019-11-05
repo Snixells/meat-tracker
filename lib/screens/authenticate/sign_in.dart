@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:meattracker/services/services.dart';
 import 'package:meattracker/shared/constants.dart';
 import 'package:meattracker/shared/shared.dart';
@@ -25,8 +26,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        centerTitle: true,
-        title: Text('Sign in'),
+        backgroundColor: Theme.of(context).canvasColor,
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
@@ -38,10 +38,32 @@ class _SignInState extends State<SignIn> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
         child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
+              Text(
+                'Log in',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20.0),
+              RoundedButton(
+                color: Theme.of(context).primaryColor,
+                text: 'Continue with Google',
+                width: 350,
+                height: 50,
+                icon: FontAwesomeIcons.google,
+                onTab: () async {
+                  dynamic result = await _auth.googleSignIn();
+                  print(result);
+                },
+              ),
+              SizedBox(height: 10.0),
+              Text(
+                'Or log in with your Email',
+                style: TextStyle(fontSize: 15),
+              ),
               SizedBox(height: 20.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Email'),
@@ -62,21 +84,30 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: 20.0),
               RoundedButton(
                 color: Theme.of(context).primaryColor,
-                text: 'Sign in',
-                sideLength: 40,
-                fontSize: 18,
+                text: 'Log in',
+                fontSize: 20,
+                width: 140,
+                height: 50,
+                margin: 10,
                 onTab: () async {
+                  if(_formKey.currentState.validate()) {
                   dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                   print(result);
                   if (result == null) {
                     setState(() => error = 'Please Enter valid Information');
                   }
+                  }
                 },
               ),
-              SizedBox(height: 15.0),
               Text(
                 error,
                 style: TextStyle(color: Colors.red, fontSize: 14),
+              ),
+              RoundedButton(
+                color: Theme.of(context).canvasColor,
+                text: 'Reset Password',
+                fontSize: 15,
+                fontColor: Colors.black,
               )
             ],
           ),
