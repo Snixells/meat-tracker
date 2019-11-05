@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_analytics/observer.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:meattracker/screens/authenticate/authenticate.dart';
+import 'package:meattracker/models/models.dart';
+import 'package:meattracker/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meattracker/services/auth.dart';
 import 'package:meattracker/shared/shared.dart';
-import 'package:provider/provider.dart';
 import './screens/screens.dart';
 
 void main() => runApp(MyApp());
@@ -14,14 +12,12 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        StreamProvider<FirebaseUser>.value(value: AuthService().user)
-      ],
+    return StreamProvider<FirebaseUser>.value(
+      value: AuthService().user,
       child: MaterialApp(
         // Named Routes
         routes: {
-          '/': (context) => Authenticate(),
+          '/': (context) => Wrapper(),
           // '/': (context) => AddMeat(),
           // '/': (context) => Profile(),
           // '/': (context) => LoginScreen(),

@@ -13,9 +13,10 @@ class Profile extends StatelessWidget {
         children: <Widget>[
           RoundedButton(
             text: 'Logout',
+            color: Theme.of(context).accentColor,
             onTab: () async {
               await auth.signOut();
-              Navigator.pushReplacementNamed(context, '/main');
+              Navigator.pushReplacementNamed(context, '/');
             },
           )
         ],

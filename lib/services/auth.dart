@@ -54,11 +54,16 @@ class AuthService {
 
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
+      print('Creating user with Email and password');
+      print('Email: $email, password: $password');
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      print('Result: $result');
       FirebaseUser user = result.user;
-      updateUserData(user);
+      print('User $user');
+      // updateUserData(user);
       return user;
     } catch (e) {
+      print('Error in registering');
       print(e.toString());
       return null;
     }
@@ -67,7 +72,10 @@ class AuthService {
   Future<void> updateUserData(FirebaseUser user) {
     DocumentReference reportRef = _db.collection('reports').document(user.uid);
 
-    return reportRef.setData({'uid': user.uid, 'lastActivity': DateTime.now()}, merge: true);
+    Future result = reportRef.setData({'uid': user.uid, 'lastActivity': DateTime.now()}, merge: true);
+    print(result);
+    return result;
+    // return reportRef.setData({'uid': user.uid, 'lastActivity': DateTime.now()}, merge: true);
   }
 
   Future<void> signOut() async {

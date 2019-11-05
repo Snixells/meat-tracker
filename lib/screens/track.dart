@@ -14,7 +14,7 @@ class TrackMeat extends StatelessWidget {
           centerTitle: true,
           actions: <Widget>[
             IconButton(
-              icon: Icon(FontAwesomeIcons.user),
+              icon: Icon(FontAwesomeIcons.user, color: Colors.black),
               onPressed: () => Navigator.pushNamed(context, '/profile'),
             ),
           ],
@@ -22,7 +22,7 @@ class TrackMeat extends StatelessWidget {
         body: ListView(
           children: [
             Center(
-              child: new RoundedButton(text: 'Add Meat'),
+              child: new RoundedButton(text: 'Add Meat', color: Theme.of(context).accentColor,),
             ),
             MeatData(
               amount: 200,
