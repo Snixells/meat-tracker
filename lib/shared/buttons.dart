@@ -34,13 +34,13 @@ class RoundedButton extends StatelessWidget {
         child: InkWell(
           onTap: onTab,
           borderRadius: BorderRadius.circular(borderRadius),
-          splashColor: Theme.of(context).primaryColor,
+          splashColor: Theme.of(context).accentColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 text,
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: fontSize, color: Colors.white),
               ),
             ],
           ),

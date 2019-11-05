@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meattracker/services/services.dart';
 import 'package:meattracker/shared/constants.dart';
+import 'package:meattracker/shared/shared.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -59,13 +60,12 @@ class _SignInState extends State<SignIn> {
                 obscureText: true,
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
-                color: Theme.of(context).accentColor,
-                child: Text(
-                  'Sign in',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () async {
+              RoundedButton(
+                color: Theme.of(context).primaryColor,
+                text: 'Sign in',
+                sideLength: 40,
+                fontSize: 18,
+                onTab: () async {
                   dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                   print(result);
                   if (result == null) {

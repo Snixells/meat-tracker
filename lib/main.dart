@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
         },
         theme: ThemeData(
           backgroundColor: Colors.blue,
-          canvasColor: Color.fromRGBO(244, 249, 242, 1),
+          canvasColor: Color.fromRGBO(236, 240, 241,1),
           fontFamily: 'Nunito',
-          accentColor: Color.fromRGBO(230, 57, 70, 1),
-          primaryColor: Color.fromRGBO(69, 123, 157, 1),
+          accentColor: Color.fromRGBO(46, 204, 113, 1),
+          primaryColor: Color.fromRGBO(52, 152, 219, 1),
           appBarTheme: AppBarTheme(
               textTheme: TextTheme(
                 title: TextStyle(

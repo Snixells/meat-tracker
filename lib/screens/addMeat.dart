@@ -27,7 +27,7 @@ class AddMeat extends StatelessWidget {
             children: <Widget>[
               RoundedButton(text: 'Save', color: Theme.of(context).accentColor),
               RoundedButton(
-                  text: 'Discard', color: Theme.of(context).primaryColor),
+                  text: 'Discard', color: Theme.of(context).accentColor),
             ],
           )
         ],
