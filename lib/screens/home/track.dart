@@ -18,7 +18,9 @@ class TrackMeat extends StatelessWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/add');
+          },
           backgroundColor: Theme.of(context).primaryColor,
           // child: Text('Add', style: TextStyle(color: Colors.white)),
           child: Icon(
@@ -114,6 +116,9 @@ class MeatData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+        ),
         margin: EdgeInsets.only(left: 20, right: 20, bottom: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -126,7 +131,7 @@ class MeatData extends StatelessWidget {
                   '$name',
                   style: TextStyle(
                     fontSize: 15,
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

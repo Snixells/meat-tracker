@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:meattracker/screens/home/addMeat.dart';
 import 'package:meattracker/screens/profile.dart';
 import 'package:meattracker/screens/wrapper.dart';
 import 'package:meattracker/services/auth.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         // Named Routes
         routes: {
           '/': (context) => Wrapper(),
+          '/add': (context) => AddMeat(),
           '/profile': (context) => Profile(),
         },
         theme: ThemeData(
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Nunito',
           accentColor: Color.fromRGBO(46, 204, 113, 1),
           primaryColor: Color.fromRGBO(52, 152, 219, 1),
+          errorColor: Color.fromRGBO(231, 76, 60,1.0),
           appBarTheme: AppBarTheme(
               textTheme: TextTheme(
                 title: TextStyle(
