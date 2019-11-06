@@ -28,26 +28,26 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.plusSquare, size: 20),
+            icon: Icon(FontAwesomeIcons.plusCircle, size: 16),
             title: Text(
               'Track Meat',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Nunito'),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Nunito',
+              ),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.chartBar, size: 20),
+            icon: Icon(FontAwesomeIcons.chartBar, size: 21),
             title: Text(
               'Analytics',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Nunito'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Nunito'),
             ),
           ),
         ].toList(),
-        // fixedColor: Colors.deepOrange[200],
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepOrange,
+        selectedItemColor: Theme.of(context).primaryColor,
       ),
     );
   }
