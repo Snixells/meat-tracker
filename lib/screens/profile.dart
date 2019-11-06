@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meattracker/services/services.dart';
+import 'package:meattracker/services/auth.dart';
 import 'package:meattracker/shared/buttons.dart';
 
 class Profile extends StatelessWidget {

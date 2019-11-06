@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:meattracker/services/services.dart';
+import 'package:meattracker/services/auth.dart';
+import 'package:meattracker/shared/buttons.dart';
 import 'package:meattracker/shared/constants.dart';
-import 'package:meattracker/shared/shared.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -90,12 +90,12 @@ class _SignInState extends State<SignIn> {
                 height: 50,
                 margin: 10,
                 onTab: () async {
-                  if(_formKey.currentState.validate()) {
-                  dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                  print(result);
-                  if (result == null) {
-                    setState(() => error = 'Please Enter valid Information');
-                  }
+                  if (_formKey.currentState.validate()) {
+                    dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+                    print(result);
+                    if (result == null) {
+                      setState(() => error = 'Please Enter valid Information');
+                    }
                   }
                 },
               ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../shared/shared.dart';
+import 'package:meattracker/shared/buttons.dart';
 
 class TrackMeat extends StatelessWidget {
   const TrackMeat({Key key}) : super(key: key);

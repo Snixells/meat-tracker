@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:meattracker/services/services.dart';
+import 'package:meattracker/services/auth.dart';
+import 'package:meattracker/shared/buttons.dart';
 import 'package:meattracker/shared/constants.dart';
-import 'package:meattracker/shared/shared.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;

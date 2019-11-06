@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../shared/shared.dart';
-
 class Analytics extends StatelessWidget {
   const Analytics({Key key}) : super(key: key);
 

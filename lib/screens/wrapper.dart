@@ -4,8 +4,6 @@ import 'package:meattracker/screens/home.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../models/models.dart';
-
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
