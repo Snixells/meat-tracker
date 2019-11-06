@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meattracker/screens/authenticate/authenticate.dart';
-import 'package:meattracker/screens/home.dart';
+import 'package:meattracker/screens/home/home.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

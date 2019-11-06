@@ -1,10 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meattracker/screens/analytics.dart';
 import 'package:meattracker/screens/profile.dart';
 import 'package:meattracker/screens/wrapper.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meattracker/services/auth.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
