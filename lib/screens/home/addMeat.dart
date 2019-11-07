@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meattracker/shared/buttons.dart';
 import 'package:meattracker/shared/constants.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddMeat extends StatefulWidget {
   const AddMeat({Key key}) : super(key: key);
@@ -12,13 +13,22 @@ class AddMeat extends StatefulWidget {
 class _AddMeatState extends State<AddMeat> {
   final _formKey = GlobalKey<_AddMeatState>();
   @override
+  DateTime selectedDate = DateTime.now();
+
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(context: context, initialDate: selectedDate, firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
 
   // Form Field State
   String description = '';
-  String type = '';
-  int amound = 0;
+  int amount = 0;
   bool processed = false;
   DateTime dateTime = DateTime.now();
+  String type;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +39,7 @@ class _AddMeatState extends State<AddMeat> {
         elevation: 0.0,
       ),
       body: Form(
+        key: _formKey,
         child: Column(
           children: [
             Expanded(
@@ -51,7 +62,9 @@ class _AddMeatState extends State<AddMeat> {
                       setState(() => description = val);
                     },
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     decoration: textInputDecoration.copyWith(hintText: 'Amount'),
                     validator: (val) => val.isEmpty ? 'Please Enter the Amount' : null,
@@ -60,13 +73,71 @@ class _AddMeatState extends State<AddMeat> {
                       setState(() => description = val);
                     },
                   ),
-                  ListItem(
-                    descriptionField: FormText(text: 'Meat Type'),
-                    formField: RoundedButton(color: Theme.of(context).primaryColor),
+                  SizedBox(height: 10),
+                  Container(
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15.0)),
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 12),
+                        DropdownButton<String>(
+                          value: type,
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                          underline: Container(
+                            height: 0,
+                          ),
+                          hint: Text('Meat Type'),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              type = newValue;
+                            });
+                          },
+                          items: <String>['Red Meat', 'Poultry ', 'Pork', 'Seafood'].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                        SizedBox(width: 80),
+                        Text('Processed:', style: TextStyle(fontSize: 15)),
+                        Checkbox(
+                          value: processed,
+                          activeColor: Theme.of(context).primaryColor,
+                          onChanged: (bool value) {
+                            setState(() {
+                              processed = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                  ListItem(
-                    descriptionField: FormText(text: 'Meat Type'),
-                    formField: RoundedButton(color: Theme.of(context).primaryColor),
+                  SizedBox(height: 10),
+                  Container(
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15.0)),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 12),
+                        Text(
+                          'Date: ',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        // Text('Date:', style: TextStyle(fontSize: 15)),
+                        // SizedBox(width: 10),
+                        FlatButton(
+                          onPressed: () => _selectDate(context),
+                          child: Text("${selectedDate.toLocal().day}.${selectedDate.toLocal().month}.${selectedDate.toLocal().year}"),
+                        ),
+                        RoundedButton(
+                          onTab: () => _selectDate(context),
+                          text: "${selectedDate.toLocal().day}.${selectedDate.toLocal().month}.${selectedDate.toLocal().year}",
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontColor: Colors.black,
+                        ),
+                        SizedBox(width: 20.0),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -102,23 +173,5 @@ class FormText extends StatelessWidget {
       text,
       style: TextStyle(fontSize: 20.0),
     );
-  }
-}
-
-class ListItem extends StatelessWidget {
-  final dynamic descriptionField;
-  final dynamic formField;
-
-  const ListItem({Key key, this.descriptionField, this.formField}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(5)),
-        // child: Row(children: [SizedBox(width: 20), descriptionField, SizedBox(width: 40), formField]),
-        child: Row(
-          children: <Widget>[formField],
-        ));
   }
 }
