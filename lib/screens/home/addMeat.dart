@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meattracker/services/database.dart';
 import 'package:meattracker/shared/buttons.dart';
 import 'package:meattracker/shared/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,7 @@ class AddMeat extends StatefulWidget {
 }
 
 class _AddMeatState extends State<AddMeat> {
+  DatabaseService _db = DatabaseService();
   final _formKey = GlobalKey<FormState>();
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -151,13 +153,13 @@ class _AddMeatState extends State<AddMeat> {
                   text: 'Save',
                   color: Theme.of(context).accentColor,
                   onTab: () {
-                    print(description);
-                    print(amount);
-                    print(type);
-                    print(processed);
-                    print(dateTime);
                     if (_formKey.currentState.validate()) {
                       print('Form validated');
+                      try {
+                        _db.addTrackedMeat(description, type, amount, processed, dateTime);
+                      } catch (e) {
+                        print(e);
+                      }
                     }
                   },
                 ),
