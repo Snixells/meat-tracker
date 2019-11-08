@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:meattracker/models/models.dart';
 import 'package:meattracker/screens/home/analytics.dart';
 import 'package:meattracker/screens/home/track.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -23,6 +25,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: _pageOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

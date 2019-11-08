@@ -1,17 +1,19 @@
 // Embedded Maps
 
 class MeatEntry {
+  String description;
   String type;
   bool processed;
-  int quantity;
+  int amount;
   DateTime datetime;
 
-  MeatEntry({this.type, this.processed, this.quantity, this.datetime});
+  MeatEntry({this.description, this.type, this.processed, this.amount, this.datetime});
 
   MeatEntry.fromMap(Map data) {
+    description = data['description'] ?? '';
     type = data['type'];
     processed = data['processed'] ?? false;
-    quantity = data['quantity'] ?? 0;
+    amount = data['quantity'] ?? 0;
     datetime = data['datetime'];
   }
 }
@@ -25,10 +27,13 @@ class User {
   User({this.uid, this.meatEntries});
 
   factory User.fromMap(Map data) {
-    return User(
-        uid: data['uid'] ?? '',
-        meatEntries: (data['meatEntries'] as List ?? [])
-            .map((v) => MeatEntry.fromMap(v))
-            .toList());
+    return User(uid: data['uid'] ?? '', meatEntries: (data['meatEntries'] as List ?? []).map((v) => MeatEntry.fromMap(v)).toList());
   }
+}
+
+class UserData {
+  final String uid;
+  final String username;
+
+  UserData({this.uid, this.username});
 }

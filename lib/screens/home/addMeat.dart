@@ -16,10 +16,10 @@ class _AddMeatState extends State<AddMeat> {
   final _formKey = GlobalKey<FormState>();
 
   Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(context: context, initialDate: dateTime, firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
-    if (picked != null && picked != dateTime)
+    final DateTime picked = await showDatePicker(context: context, initialDate: datetime, firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
+    if (picked != null && picked != datetime)
       setState(() {
-        dateTime = picked;
+        datetime = picked;
       });
   }
 
@@ -29,7 +29,7 @@ class _AddMeatState extends State<AddMeat> {
   String description = '';
   int amount = 0;
   bool processed = false;
-  DateTime dateTime = DateTime.now();
+  DateTime datetime = DateTime.now();
   String type;
 
   List<String> types = ['Red Meat', 'Poultry ', 'Pork', 'Seafood'];
@@ -137,7 +137,7 @@ class _AddMeatState extends State<AddMeat> {
                         SizedBox(width: 12),
                         FlatButton(
                           onPressed: () => _selectDate(context), // TODO: Change to Cupertino Style On Screen Datepicker.
-                          child: Text("${dateTime.toLocal().day}.${dateTime.toLocal().month}.${dateTime.toLocal().year}"),
+                          child: Text("${datetime.toLocal().day}.${datetime.toLocal().month}.${datetime.toLocal().year}"),
                         ),
                         SizedBox(width: 20.0),
                       ],
@@ -156,7 +156,7 @@ class _AddMeatState extends State<AddMeat> {
                     if (_formKey.currentState.validate()) {
                       print('Form validated');
                       try {
-                        _db.addTrackedMeat(description, type, amount, processed, dateTime);
+                        _db.addTrackedMeat(description, type, amount, processed, datetime);
                       } catch (e) {
                         print(e);
                       }
