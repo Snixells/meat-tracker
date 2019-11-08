@@ -11,17 +11,17 @@ class AddMeat extends StatefulWidget {
 }
 
 class _AddMeatState extends State<AddMeat> {
-  final _formKey = GlobalKey<_AddMeatState>();
-  @override
-  DateTime selectedDate = DateTime.now();
+  final _formKey = GlobalKey<FormState>();
 
   Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(context: context, initialDate: selectedDate, firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
+    final DateTime picked = await showDatePicker(context: context, initialDate: dateTime, firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
+    if (picked != null && picked != dateTime)
       setState(() {
-        selectedDate = picked;
+        dateTime = picked;
       });
   }
+
+  String selected;
 
   // Form Field State
   String description = '';
@@ -30,11 +30,11 @@ class _AddMeatState extends State<AddMeat> {
   DateTime dateTime = DateTime.now();
   String type;
 
+  List<String> types = ['Red Meat', 'Poultry ', 'Pork', 'Seafood'];
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: Text('Add Meat'),
-        // centerTitle: true,
         backgroundColor: Theme.of(context).canvasColor,
         elevation: 0.0,
       ),
@@ -70,7 +70,7 @@ class _AddMeatState extends State<AddMeat> {
                     validator: (val) => val.isEmpty ? 'Please Enter the Amount' : null,
                     keyboardType: TextInputType.numberWithOptions(),
                     onChanged: (val) {
-                      setState(() => description = val);
+                      setState(() => amount = int.parse(val));
                     },
                   ),
                   SizedBox(height: 10),
@@ -79,24 +79,34 @@ class _AddMeatState extends State<AddMeat> {
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 12),
-                        DropdownButton<String>(
-                          value: type,
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                          underline: Container(
-                            height: 0,
+                        Container(
+                          height: 65,
+                          width: 120,
+                          child: Center(
+                            child: DropdownButtonFormField<String>(
+                              // TODO Make Prettier => Change Height & Stuff
+                              decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                              ),
+                              value: type,
+                              validator: (val) => (val == null) ? 'Enter Meat Type' : null,
+                              hint: Text('Meat Type'),
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  type = newValue;
+                                });
+                              },
+                              onSaved: (val) => setState(() => description = val),
+                              items: <String>['Red Meat', 'Poultry ', 'Pork', 'Seafood'].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
                           ),
-                          hint: Text('Meat Type'),
-                          onChanged: (String newValue) {
-                            setState(() {
-                              type = newValue;
-                            });
-                          },
-                          items: <String>['Red Meat', 'Poultry ', 'Pork', 'Seafood'].map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
                         ),
                         SizedBox(width: 80),
                         Text('Processed:', style: TextStyle(fontSize: 15)),
@@ -122,18 +132,10 @@ class _AddMeatState extends State<AddMeat> {
                           'Date: ',
                           style: TextStyle(fontSize: 15),
                         ),
-                        // Text('Date:', style: TextStyle(fontSize: 15)),
-                        // SizedBox(width: 10),
+                        SizedBox(width: 12),
                         FlatButton(
-                          onPressed: () => _selectDate(context),
-                          child: Text("${selectedDate.toLocal().day}.${selectedDate.toLocal().month}.${selectedDate.toLocal().year}"),
-                        ),
-                        RoundedButton(
-                          onTab: () => _selectDate(context),
-                          text: "${selectedDate.toLocal().day}.${selectedDate.toLocal().month}.${selectedDate.toLocal().year}",
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontColor: Colors.black,
+                          onPressed: () => _selectDate(context), // TODO: Change to Cupertino Style On Screen Datepicker.
+                          child: Text("${dateTime.toLocal().day}.${dateTime.toLocal().month}.${dateTime.toLocal().year}"),
                         ),
                         SizedBox(width: 20.0),
                       ],
@@ -145,7 +147,20 @@ class _AddMeatState extends State<AddMeat> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                RoundedButton(text: 'Save', color: Theme.of(context).accentColor),
+                RoundedButton(
+                  text: 'Save',
+                  color: Theme.of(context).accentColor,
+                  onTab: () {
+                    print(description);
+                    print(amount);
+                    print(type);
+                    print(processed);
+                    print(dateTime);
+                    if (_formKey.currentState.validate()) {
+                      print('Form validated');
+                    }
+                  },
+                ),
                 RoundedButton(
                   text: 'Discard',
                   color: Theme.of(context).errorColor,
@@ -158,20 +173,6 @@ class _AddMeatState extends State<AddMeat> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class FormText extends StatelessWidget {
-  final String text;
-
-  const FormText({Key key, this.text = 'Text'}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(fontSize: 20.0),
     );
   }
 }
