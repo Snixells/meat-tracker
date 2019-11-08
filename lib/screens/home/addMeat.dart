@@ -157,6 +157,7 @@ class _AddMeatState extends State<AddMeat> {
                       print('Form validated');
                       try {
                         _db.addTrackedMeat(description, type, amount, processed, datetime);
+                        Navigator.pushNamed(context, '/');
                       } catch (e) {
                         print(e);
                       }
